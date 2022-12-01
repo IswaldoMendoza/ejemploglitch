@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Resident Evil 1",
+    "price": 300,
+    "thumbnail": "image.png",
+    "id": 1
+  },
+  {
+    "name": "Resident Evil 2",
+    "price": 300,
+    "thumbnail": "image.png",
+    "id": 2
+  },
+  {
+    "name": "Resident Evil 3",
+    "price": 300,
+    "thumbnail": "image.png",
+    "id": 3
+  },
+  {
+    "name": "Resident Evil 4",
+    "price": 300,
+    "thumbnail": "image.png",
+    "id": 4
+  }
+]

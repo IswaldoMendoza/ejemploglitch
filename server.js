@@ -1,32 +1,27 @@
 const express = require('express')
-
+const Contenedor = require('./Contenedor.js')
 const app = express()
+const productos = new Contenedor('./productos.json')
+const PORT = 8080 || process.env.PORT
 
-const PORT = 8080
+app.get("/", (req, res) => {
+  res.send(`<h1 style='color:blue'>Escribir en la barra: "/productos"</h1>`);
+});
 
-let visitas = 0
-
-
-app.get('/', (req, res) => {
-    res.send(`<h1 style='color:blue'>Hola Mundo</h1>`)
+app.get('/productos', async (req, res) => {
+  const prods = await productos.getAll()
+  res.send(prods)
 })
 
-
-app.get('/visitas', (req, res) => {
-    visitas += 1
-    res.send(`La cantidad de visitas es: ${visitas}`)
+app.get('/productoRandom', async (req, res) => {
+  const prods = await productos.getAll()
+  const aleatorio = parseInt(Math.random()*prods.length)
+  res.send(prods[aleatorio])
 })
 
-app.get('/fyh', (req, res) => {
-    const date = new Date
-    res.send(date.toLocaleString())
-})
-
-// Configuramos el puerto
 const server = app.listen(PORT, () => {
-    console.log(`servidor express escuchando en el pto: ${PORT}`);
-}) 
+  console.log(`Servidor http escuchando en el puerto ${server.address().port}`)
+})
 
-// Escuchamos un evento de error
 server.on('error', error => console.log(`Error en servidor ${error}`))
 
